@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:task_route/core/network/network_info.dart';
 import 'package:task_route/features/get_products/data/dataSource/local_datasource.dart';
 import 'package:task_route/features/get_products/data/dataSource/remote_datasource.dart';
-import 'package:task_route/features/get_products/data/models/product_model.dart';
+import 'package:task_route/features/get_products/domain/entities/products.dart';
 import 'package:task_route/features/get_products/domain/repositories/fetch_products_repo.dart';
 
 class FetchProductsRepositoryImpl extends FetchProductsRepository {
@@ -17,13 +17,14 @@ class FetchProductsRepositoryImpl extends FetchProductsRepository {
   });
 
   @override
-  Future<Either<String, List<ProductModel>>> fetchProducts() async {
+  Future<Either<String, List<ProductEntity>>> fetchProducts() async {
     if (await networkInfo.isConnected) {
       try {
         final remoteProducts = await remoteDatasource.fetchProducts();
         await localDatasource.cacheProducts(remoteProducts);
         return right(remoteProducts);
       } catch (e) {
+        print(e.toString());
         return left(e.toString());
       }
     } else {

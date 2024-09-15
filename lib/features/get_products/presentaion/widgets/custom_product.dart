@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:task_route/core/network/constants/colors.dart';
-import 'package:task_route/features/get_products/data/models/product_model.dart';
+import 'package:task_route/features/get_products/domain/entities/products.dart';
 
 class CustomProduct extends StatelessWidget {
-  final ProductModel products;
+  final ProductEntity products;
   const CustomProduct({super.key, required this.products});
 
   @override
@@ -28,7 +28,7 @@ class CustomProduct extends StatelessWidget {
                     topRight: Radius.circular(20)),
                 child: Center(
                   child: CachedNetworkImage(
-                    imageUrl: products.images[0],
+                    imageUrl: products.image,
                     height: MediaQuery.sizeOf(context).height * 0.15,
                     placeholder: (context, url) =>
                         const Center(child: CircularProgressIndicator()),
@@ -64,7 +64,7 @@ class CustomProduct extends StatelessWidget {
                   flex: 2,
                   child: Text(
                     "EGP ${products.price}",
-                    style: TextStyle(color: primaryColor, fontSize: 18),
+                    style: TextStyle(color: primaryColor, fontSize: 15),
                   ),
                 ),
                 Expanded(
@@ -72,7 +72,7 @@ class CustomProduct extends StatelessWidget {
                     "${products.price}",
                     style: TextStyle(
                         color: Colors.blue,
-                        fontSize: 15,
+                        fontSize: 12,
                         decoration: TextDecoration.lineThrough),
                   ),
                 )
@@ -90,7 +90,7 @@ class CustomProduct extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          "Review (${products.reviews[0].rating})",
+                          "Review (${products.rating.rate})",
                           style: TextStyle(color: primaryColor, fontSize: 13),
                         ),
                         Icon(

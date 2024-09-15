@@ -9,7 +9,7 @@ class FetchProductsInitial extends FetchProductsState {}
 class FetchProductsLoading extends FetchProductsState {}
 
 class FetchProductsLoaded extends FetchProductsState {
-  final List<ProductModel> products;
+  final List<ProductEntity> products;
 
   FetchProductsLoaded(this.products);
 

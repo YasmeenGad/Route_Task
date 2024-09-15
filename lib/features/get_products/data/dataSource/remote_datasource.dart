@@ -12,16 +12,15 @@ class RemoteDatasourceImpl extends RemoteDatasource {
 
   @override
   Future<List<ProductModel>> fetchProducts() async {
-  
     final response = await client.get(
-      Uri.parse('https://dummyjson.com/products'),
+      Uri.parse('https://fakestoreapi.com/products'),
       headers: {
         'Content-Type': 'application/json',
       },
     );
 
     if (response.statusCode == 200) {
-      final List<dynamic> productsJson = json.decode(response.body)['products'];
+      final List<dynamic> productsJson = json.decode(response.body);
       return productsJson
           .map((jsonItem) => ProductModel.fromJson(jsonItem))
           .toList();

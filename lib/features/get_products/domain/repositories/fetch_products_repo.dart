@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:task_route/features/get_products/data/models/product_model.dart';
+import 'package:task_route/features/get_products/domain/entities/products.dart';
 
 abstract class FetchProductsRepository {
-  Future<Either<String, List<ProductModel>>> fetchProducts();
+  Future<Either<String, List<ProductEntity>>> fetchProducts();
 }
